@@ -50,6 +50,7 @@ self.addEventListener("install", (event) => {
 
 // Try fetching from the network first, or try fetching from the cache if offline
 self.addEventListener("fetch", (event) => {
+	if (!(event.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol
 	event.respondWith(
 		fetchFromNetwork(event.request).catch(() => fetchFromCache(event.request))
 	);
