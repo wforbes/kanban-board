@@ -6,6 +6,13 @@
 				<div class="card-block">
 					<h5 class="card-title">
 						<span class="text-muted">#{{ item.id }}</span> {{ item.text }}
+						<button
+							type="button"
+							class="close-button pull-right"
+							@click="removeItem(item)"
+						>
+							<span>&times;</span>
+						</button>
 						<span :class="badgeClass(item)">{{ badgeText(item) }}</span>
 					</h5>
 				</div>
@@ -48,6 +55,9 @@ export default {
 		items: (s) => [...s.items.todo, ...s.items.inProgress, ...s.items.done]
 	}),
 	methods: {
+		removeItem(item) {
+			this.$store.commit("removeItem", item);
+		},
 		itemLane(item) {
 			if (this.$store.state.items.todo.includes(item)) {
 				return "todo";
@@ -60,7 +70,7 @@ export default {
 			return this.badgeDetail[this.itemLane(item)].text;
 		},
 		badgeClass(item) {
-			return this.badgeDetail[this.itemLane(item)].class;
+			return `${this.badgeDetail[this.itemLane(item)].class} pull-right`;
 		}
 	}
 };
