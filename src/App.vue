@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<div class="page-header">
+			<install-prompt></install-prompt>
 			<h1>Kanban Board</h1>
 			<p class="lead">An example of a Kanban board, written in Vue.js</p>
 		</div>
@@ -10,10 +11,12 @@
 </template>
 <script>
 import MenuBar from "@/components/MenuBar";
+import InstallPrompt from "@/components/InstallPrompt.vue";
 export default {
 	name: "app",
 	components: {
-		"menu-bar": MenuBar
+		"menu-bar": MenuBar,
+		"install-prompt": InstallPrompt
 	}
 };
 </script>
