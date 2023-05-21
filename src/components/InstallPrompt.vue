@@ -1,6 +1,13 @@
 <template>
 	<div class="alert alert-dismissible alert-info" v-if="showInstallBanner">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<button
+			type="button"
+			class="close"
+			data-dismiss="alert"
+			@click="closePrompt"
+		>
+			&times;
+		</button>
 		Do you want to
 		<a href="#" @click.prevent="install">add this app to your home screen?</a>
 	</div>
@@ -28,6 +35,9 @@ export default {
 			installEvent.userChoice.then(() => {
 				installEvent = null;
 			});
+		},
+		closePrompt() {
+			this.showInstallBanner = false;
 		}
 	}
 };
